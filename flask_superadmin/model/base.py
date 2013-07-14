@@ -69,6 +69,9 @@ class BaseModelAdmin(BaseView):
     add_template = 'admin/model/add.html'
     delete_template = 'admin/model/delete.html'
 
+    # List of fields that will be setted style="display: none"
+    hidden_fields = []
+
     search_fields = None
     actions = None
 
