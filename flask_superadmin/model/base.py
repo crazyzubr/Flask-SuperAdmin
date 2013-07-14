@@ -309,7 +309,7 @@ class BaseModelAdmin(BaseView):
             if form.validate_on_submit():
                 try:
                     self.save_model(instance, form, False)
-                    flash('Changes to %s saved successfully' % self.get_display_name(),
+                    flash(gettext('Changes to %(model)s saved successfully', model=self.get_display_name()),
                           'success')
                     return self.dispatch_save_redirect(instance)
                 except Exception, ex:
@@ -335,7 +335,7 @@ class BaseModelAdmin(BaseView):
             count = len(pks)
             self.delete_models(*pks)
 
-            flash('Successfully deleted %s %ss' % (count, self.get_display_name()),
+            flash(gettext('Successfully deleted %(count)s %(model)ss', count=count, model=self.get_display_name()),
                   'success')
             return redirect(url_for(self.get_url_name('index')))
         else:
