@@ -39,6 +39,10 @@ class ModelConverter(object):
 
         self.converters = converters
 
+    def _get_field_override(self, name):
+        if self.view.field_overrides:
+            return self.view.field_overrides.get(name)
+
     def convert(self, model, field, field_args, multiple=False):
         kwargs = {
             'label': unicode(field.verbose_name or field.name or ''),
@@ -54,6 +58,11 @@ class ModelConverter(object):
             kwargs['validators'].append(validators.Required())
         else:
             kwargs['validators'].append(validators.Optional())
+
+        overrides = self._get_field_override(field.name)
+        if overrides:
+            if 'validators' in overrides:
+                kwargs['validators'].append(*overrides['validators'])
 
         if field.choices:
             kwargs['choices'] = field.choices
