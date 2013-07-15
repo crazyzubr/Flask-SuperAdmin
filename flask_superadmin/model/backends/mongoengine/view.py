@@ -34,7 +34,7 @@ class ModelAdmin(BaseModelAdmin):
         return model_form
 
     def get_converter(self):
-        return AdminModelConverter
+        return AdminModelConverter(self)
 
     def get_queryset(self):
         return self.model.objects

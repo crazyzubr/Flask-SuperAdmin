@@ -26,7 +26,9 @@ def converts(*args):
 
 
 class ModelConverter(object):
-    def __init__(self, converters=None):
+    def __init__(self, view, converters=None):
+
+        self.view = view
 
         if not converters:
             converters = {}
