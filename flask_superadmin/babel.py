@@ -9,7 +9,6 @@ try:
                   domain='admin')
 
         def get_translations_path(self, ctx):
-            print ctx
 
             dirname = ctx.app.extensions['admin'].translations_path
             if dirname is not None:
