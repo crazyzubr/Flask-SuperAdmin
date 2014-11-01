@@ -341,8 +341,7 @@ class BaseModelAdmin(BaseView):
                         'success'
                     )
                     return self.dispatch_save_redirect(instance)
-                except Exception, ex:
-                    print traceback.format_exc()
+                except Exception as ex:
                     flash(gettext('Failed to edit model. %(error)s',
                                   error=str(ex)), 'error')
         else:
